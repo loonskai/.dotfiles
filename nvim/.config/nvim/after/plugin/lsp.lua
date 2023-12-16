@@ -16,7 +16,6 @@ require('mason-lspconfig').setup({
 		'tsserver',
 		'eslint',
 		'lua_ls',
-		'grammarly',
 		'gopls'
 	},
 	handlers = {
