@@ -1,27 +1,33 @@
-local lsp = require('lsp-zero')
-
-lsp.preset('recommended')
-
-lsp.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-	-- Replace the language servers listed here 
-	-- with the ones you want to install
-	ensure_installed = {
-		'tsserver',
-		'eslint',
-		'lua_ls',
-		'gopls'
-	},
-	handlers = {
-		lsp.default_setup,
-	},
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP Actions',
+    callback = function(event)
+    -- Keybindings
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
+        vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
+        vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, {buffer=0})
+        vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, {buffer=0})
+        vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', {buffer=0})
+        vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, {buffer=0})
+    end
 })
 
+require('mason').setup()
+require('mason-lspconfig').setup {
+    ensure_installed = {
+        'lua_ls',
+        'gopls',
+        'eslint',
+        'tsserver',
+        'pyright'
+    }
+}
 
-lsp.setup()
+local lspconfig = require('lspconfig')
+
+lspconfig.lua_ls.setup {}
+lspconfig.gopls.setup {
+    on_attach = function()
+    end
+}

@@ -8,3 +8,6 @@ vim.opt.expandtab=true
 vim.opt.smartindent=true
 vim.opt.background='dark'
 
+
+local anki_as_md = 'au BufNewFile,BufFilePre,BufRead *.anki set filetype=markdown'
+vim.api.nvim_command(anki_as_md)
