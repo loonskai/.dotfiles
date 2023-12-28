@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
             vim.fn["mkdp#util#install"]()
         end
     })
+    use("google/vim-jsonnet")
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",

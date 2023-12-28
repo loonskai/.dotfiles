@@ -23,7 +23,8 @@ require('mason-lspconfig').setup {
         'eslint',
         'tsserver',
         'pyright',
-        'rescriptls'
+        'rescriptls',
+        'cucumber_language_server'
     }
 }
 
@@ -33,4 +34,20 @@ lspconfig.lua_ls.setup {}
 lspconfig.gopls.setup {
     on_attach = function()
     end
+}
+lspconfig.cucumber_language_server.setup{
+    settings = {
+        cucumber = {
+            features = { "**/*.feature" },
+            glue = { 
+                "**/*.steps.ts",
+                "**/*.step.ts"
+            }
+        }
+    }
+   -- on_attach = function(client, bufnr)
+   --     vim.keymap.set('n', "<C-]>", vim.lsp.buf.definition, {buffer=0})
+   --     vim.keymap.set('n', "gn", vim.diagnostic.goto_next, {buffer=0})
+   --     vim.keymap.set('n', "gb", vim.diagnostic.goto_prev, {buffer=0})
+   -- end
 }
