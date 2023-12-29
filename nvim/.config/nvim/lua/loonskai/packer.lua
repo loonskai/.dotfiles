@@ -13,6 +13,10 @@ return require("packer").startup(function(use)
         end
     })
     use("google/vim-jsonnet")
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
