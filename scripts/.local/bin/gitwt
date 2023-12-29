@@ -1,0 +1,20 @@
+#!/bin/bash
+
+command=$1;
+
+case $command in
+    clone)
+        echo "clone"
+        dirname=$(echo $2 | sed -n "s/^.*\/\(.*\)\.git$/\1/p")
+        echo "Creating directory: $dirname"
+        mkdir $dirname
+        cd $dirname
+        git clone --bare $2 .bare
+        echo "gitdir: ./.bare" > .git
+        ;;
+    link)
+        echo "link"
+        ;;
+    *)
+        echo "Nothing to do here"
+esac
