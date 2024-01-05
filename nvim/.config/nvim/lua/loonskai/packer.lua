@@ -1,7 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
-    use "wbthomason/packer.nvim"
+    use("wbthomason/packer.nvim")
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("nvim-treesitter/playground")
     use("mbbill/undotree")
@@ -13,10 +13,10 @@ return require("packer").startup(function(use)
         end
     })
     use("google/vim-jsonnet")
-    use {
+    use({
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
-    }
+    })
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
@@ -58,22 +58,20 @@ return require("packer").startup(function(use)
     -- DAP Go
     use { "leoluz/nvim-dap-go" }
     -- DAP JS
-    use { "mxsdev/nvim-dap-vscode-js" }
     use {
         "microsoft/vscode-js-debug",
         opt = true,
         run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
     }
-    -- use {
-        --     "Joakker/lua-json5",
-        --     -- if you"re on windows
-        --     -- run = "powershell ./install.ps1"
-        --     run = "./install.sh"
-        -- }
-        -- Harpoon
-        use {
-            "ThePrimeagen/harpoon",
-            branch = "harpoon2",
-            requires = { {"nvim-lua/plenary.nvim"} }
-        }
-    end)
+    use { "mxsdev/nvim-dap-vscode-js",
+        requires = { "mfussenegger/nvim-dap" },
+    }
+    use({ "Joakker/lua-json5", build = "./install.sh" })
+    -- Harpoon
+    use("nvim-lua/plenary.nvim")
+    use({
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    })
+end)
