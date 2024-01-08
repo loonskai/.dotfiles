@@ -3,6 +3,7 @@ require('mason-tool-installer').setup({
         'prettier'
     }
 })
+
 local js_based_languages = {
     'typescript',
     'javascript',
@@ -21,9 +22,9 @@ end
 
 local conform = require("conform")
 local format_options = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 500,
 }
 conform.setup({
     formatters_by_ft = formatters,
