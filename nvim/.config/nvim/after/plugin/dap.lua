@@ -81,7 +81,7 @@ for _, language in ipairs(js_based_languages) do
       cwd = "${workspaceFolder}", -- vim.fn.getcwd(),
       sourceMaps = true,
     },
-    -- Debug client side web application
+    ---- Debug client side web application
     {
       type = 'pwa-chrome',
       request = 'launch',
@@ -107,7 +107,7 @@ for _, language in ipairs(js_based_languages) do
       protocol = "inspector",
       sourceMaps = true,
     },
-    -- Just divide default configs
+    ---- Just divide default configs
     {
         type = "",
         name = "---- launch.json configs ----",
@@ -116,8 +116,9 @@ for _, language in ipairs(js_based_languages) do
   }
 end
 
+-- require('dap.ext.vscode').json_decode = require'json5'.parse
+-- require('dap').set_log_level('DEBUG')
 vim.keymap.set('n', '<leader>da', function()
-    require('dap.ext.vscode').json_decode = require'json5'.parse
     if vim.fn.filereadable(".vscode/launch.json") then
         require('dap.ext.vscode').load_launchjs(nil, {
             ['pwa_node'] = js_based_languages,

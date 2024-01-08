@@ -17,11 +17,18 @@ return require("packer").startup(function(use)
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     })
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    -- Formatting
+    use("WhoIsSethDaniel/mason-tool-installer")
+    use({"stevearc/conform.nvim"})
     -- Telescope
     use({
         "nvim-telescope/telescope.nvim",
         tag = "0.1.5", -- or , branch = "0.1.x",
-        requires = { {"nvim-lua/plenary.nvim"} }
+        requires = { { "nvim-lua/plenary.nvim" } }
     })
     use("nvim-telescope/telescope-dap.nvim")
     -- Colorscheme - gruvbox
@@ -65,13 +72,24 @@ return require("packer").startup(function(use)
     }
     use { "mxsdev/nvim-dap-vscode-js",
         requires = { "mfussenegger/nvim-dap" },
+        adapters = {
+            -- Default
+            "pwa-node",
+            "pwa-chrome",
+            "pwa-msedge",
+            "pwa-extensionHost",
+            --- Default
+            "chrome",
+            "node",
+            "node-terminal"
+        }
     }
-    use({ "Joakker/lua-json5", build = "./install.sh" })
+    use({ "Joakker/lua-json5", run = "./install.sh" })
     -- Harpoon
     use("nvim-lua/plenary.nvim")
     use({
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        requires = { {"nvim-lua/plenary.nvim"} }
+        requires = { { "nvim-lua/plenary.nvim" } }
     })
 end)
