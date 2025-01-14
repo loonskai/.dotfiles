@@ -1,0 +1,1 @@
+- [] Copy zip archives of Iosevka Nerd and IosevkaTerm Nerd
